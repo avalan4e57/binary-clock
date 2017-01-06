@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Binar Clock</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!--[if lt IE 9]> 
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+  </header>
+  <div id="main">
+  <h2>Binar Clock</h2>
+  <div id="binar-clock">
+    <div id="hours" class="row">
+      <div class="col-xs-2">
+        <div class="bin bin-1 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-2 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-3 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-4 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-5 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-6 circle"></div>
+      </div>
+    </div>
+    <div id="minutes" class="row">
+      <div class="col-xs-2">
+        <div class="bin bin-1 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-2 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-3 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-4 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-5 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-6 circle"></div>
+      </div>
+    </div>
+    <div id="seconds" class="row">
+      <div class="col-xs-2">
+        <div class="bin bin-1 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-2 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-3 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-4 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-5 circle"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="bin bin-6 circle"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <footer>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  var state = '1';
+  function startBinarClock() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    h = h.toString(2);
+    m = m.toString(2);
+    s = s.toString(2);
+    var t = [h,m,s];
+    for (var i = 0; i < t.length; i++) {
+      var z = 6 - t[i].length;
+      for (var j = 0; j < z; j++) {
+        t[i] = "0" + t[i];
+      }
+    }
+    var hours = document.getElementById('hours');
+    var hrsCirc = hours.getElementsByClassName('circle');
+    var minutes = document.getElementById('minutes');
+    var minCirc = minutes.getElementsByClassName('circle');
+    var seconds = document.getElementById('seconds');
+    var secCirc = seconds.getElementsByClassName('circle');
+    for (var i = 1; i < 7; i++) {
+      if (t[2][i-1] == '1') {
+        secCirc[i-1].style.backgroundColor = '#ADFF2F';
+        // hrsCirc[0].style.backgroundColor = 'red';
+      } else {
+        secCirc[i-1].style.backgroundColor = '#006400';
+        // hrsCirc[0].style.backgroundColor = '#DC143C';
+      }
+      if (t[1][i-1] == '1') {
+        minCirc[i-1].style.backgroundColor = '#ADFF2F';
+      } else {
+        minCirc[i-1].style.backgroundColor = '#006400';
+      }
+      if (t[0][i-1] == '1') {
+        hrsCirc[i-1].style.backgroundColor = '#ADFF2F';
+      } else {
+        hrsCirc[i-1].style.backgroundColor = '#006400';
+      }
+      // hrsCirc[0].style.backgroundColor = 'red';
+    }
+    
+    cur = t[2][5];
+    if (state !== cur) {
+      hrsCirc[0].style.backgroundColor = 'red';
+      v = setTimeout(function() {
+        hrsCirc[0].style.backgroundColor = '#DC143C';
+      },250);
+      state = cur;
+    } else {
+        hrsCirc[0].style.backgroundColor = '#DC143C';
+    }
+
+    t = setTimeout(function () {
+      startBinarClock();
+    }, 500);
+  }
+
+  function tick(cur) {
+    
+  }
+
+  window.onload = function() {
+    startBinarClock();
+  }
+
+ </script>
+</html>
