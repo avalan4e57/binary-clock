@@ -1,35 +1,41 @@
 html body {
 	background-color: black;
 	color: silver;
+	margin: 0;
+	padding: 0;
 }
 
 h2 {
+	margin: 0;
 	/*color: green;*/
 	text-align: center;
 }
 
+#main {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 0;
+	transform: translate(-50%, -60%);
+}
+
 #binar-clock {
-	max-width: 410px;
-	margin: auto;
+	min-width: 410px;
 	background: silver;
-	padding-right: 35px;
-	padding-left: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 10px;
 	border-radius: 10px;
-	/*transform: translateY(-50%);*/
 }
 
 #hours .bin-1 {
 	background: red;
 }
 
-
-
 .bin {
 	margin: 5px;
 	border: 2px solid lightgrey;
+	display: inline-block;
 }
+
 
 .circle {
 	width: 50px;
@@ -39,3 +45,4 @@ h2 {
 	-webkit-border-radius: 50px;
 	border-radius: 50px;
 }
+
